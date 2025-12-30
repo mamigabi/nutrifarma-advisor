@@ -566,18 +566,15 @@ with tab5:
     else:
                 if st.button("🔍 Generar Diagnóstico"):
                         with st.spinner('Analizando información del paciente...'):
-                                                # Preparar contexto del paciente
-                                                                contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Peso: {st.session_state.paciente.get('peso', 'N/A')} kg\n- Altura: {st.session_state.paciente.get('altura', 'N/A')} cm\n- Medicamentos: {', '.join(st.session_state.paciente.get('medicamentos', []))}\n\nSOLICITUD: Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
-                                {contexto}
-                                Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas específicas)
-                                """
-                                prompt = f"""Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
-                                {contexto}
-                                Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas específicas)"""
+# Preparar contexto del paciente
+                                contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Peso: {st.session_state.paciente.get('peso', 'N/A')} kg\n- Altura: {st.session_state.paciente.get('altura', 'N/A')} cm\n- Medicamentos: {', '.join(st.session_state.paciente.get('medicamentos', []))}\n"""
+                                
+                                prompt = f"""Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:\n{contexto}\n\nIncluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas específicas)"""
+                                
                                 respuesta = consultar_gemini(prompt, contexto)
                                 st.session_state.diagnostico = respuesta
-st.success("✅ Diagnóstico generado")
-        
+                                st.success("✅ Diagnóstico generado")
+                                
                 if st.session_state.diagnostico:
                         st.markdown("### 📊 Diagnóstico")
                         st.markdown(st.session_state.diagnostico)
