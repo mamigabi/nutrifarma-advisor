@@ -625,4 +625,4 @@ with col_footer2:
 with col_footer3:
     st.caption("📞 Actualización: " + datetime.now().strftime("%Y-%m-%d"))
         # Preparar contexto del paciente
-        contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Sexo: {st.session_state.paciente['sexo']}\n- Peso: {st.session_state.paciente['peso']} kg\n- Altura: {st.session_state.paciente['altura']} cm\n- IMC: {calcular_imc(st.session_state.paciente['peso'], st.session_state.paciente['altura'])}\n\n"""
+        
