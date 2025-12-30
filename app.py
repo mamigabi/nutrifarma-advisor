@@ -566,6 +566,8 @@ with tab5:
     else:
                 if st.button("🔍 Generar Diagnóstico"):
                         with st.spinner('Analizando información del paciente...'):
+                                            # Preparar contexto del paciente
+                contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Sexo: {st.session_state.paciente['sexo']}\n- Peso: {st.session_state.paciente['peso']} kg\n- Altura: {st.session_state.paciente['altura']} cm\n- IMC: {calcular_imc(st.session_state.paciente['peso'], st.session_state.paciente['altura'])}\n- Enfermedades: {', '.join(st.session_state.paciente['enfermedades'])}\n- Medicación: {len(st.session_state.paciente.get('medicacion', []))} medicamentos\n- Objetivo: {st.session_state.paciente['objetivo']}\n"""
                                 prompt = f"""Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
                 {contexto}
                 Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas estrictas, solo cambios alimentarios según pirámide nutricional)"""
@@ -624,5 +626,5 @@ with col_footer2:
     st.caption("🔒 Datos seguros - No se almacenan")
 with col_footer3:
     st.caption("📞 Actualización: " + datetime.now().strftime("%Y-%m-%d"))
-        # Preparar contexto del paciente
         
+
