@@ -565,17 +565,17 @@ with tab5:
         st.warning("⚠️ Complete primero el perfil del paciente en la pestaña 'Perfil'")
     else:
                 if st.button("🔍 Generar Diagnóstico"):
-            with st.spinner('Analizando información del paciente...'):
-                prompt = f"""Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
-{contexto}
-Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas estrictas, solo cambios alimentarios según pirámide nutricional)"""
-                respuesta = consultar_gemini(prompt, contexto)
-                st.session_state.diagnostico = respuesta
-                st.success("✅ Diagnóstico generado")
+                        with st.spinner('Analizando información del paciente...'):
+                                prompt = f"""Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
+                {contexto}
+                Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas estrictas, solo cambios alimentarios según pirámide nutricional)"""
+                                respuesta = consultar_gemini(prompt, contexto)
+                                st.session_state.diagnostico = respuesta
+                                st.success("✅ Diagnóstico generado")
         
-        if st.session_state.diagnostico:
-            st.markdown("### 📊 Diagnóstico")
-            st.markdown(st.session_state.diagnostico)
+                if st.session_state.diagnostico:
+                        st.markdown("### 📊 Diagnóstico")
+                        st.markdown(st.session_state.diagnostico)
 
 # TAB 6: COACHING NUTRICIONAL
 with tab6:
