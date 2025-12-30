@@ -568,7 +568,7 @@ with tab5:
                         with st.spinner('Analizando información del paciente...'):
                                                 # Preparar contexto del paciente
                                 # Preparar contexto del paciente
-contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Peso: {st.session_state.paciente.get('peso', 'N/A')} kg\n- Altura: {st.session_state.paciente.get('altura', 'N/A')} cm\n- Medicamentos: {', '.join(st.session_state.paciente.get('medicamentos', []))}\n\nSOLICITUD: Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
+                                contexto = f"""\nPACIENTE:\n- Nombre: {st.session_state.paciente['nombre']}\n- Edad: {st.session_state.paciente['edad']} años\n- Peso: {st.session_state.paciente.get('peso', 'N/A')} kg\n- Altura: {st.session_state.paciente.get('altura', 'N/A')} cm\n- Medicamentos: {', '.join(st.session_state.paciente.get('medicamentos', []))}\n\nSOLICITUD: Como farmacéutico nutricionista, realiza un diagnóstico nutricional completo basado en:
                                 {contexto}
                                 Incluye: 1) Valoración nutricional 2) Problemas detectados 3) Barreras potenciales 4) Recomendaciones generales (sin dietas específicas)
                                 """
