@@ -345,6 +345,10 @@ with tab1:
             ENFERMEDADES_COMUNES,
             default=st.session_state.paciente['enfermedades']
         )
+                
+        # Campo condicional para "Otra" enfermedad
+        if 'Otra' in enfermedades:
+            otra_enfermedad = st.text_input("🏭 Especificar otra enfermedad")
         
         alergias = st.text_area(
             "⚠️ Alergias e Intolerancias",
@@ -450,7 +454,8 @@ with tab2:
         fecha_alimento = st.date_input("📅 Fecha", value=date.today())
         hora_alimento = st.time_input("⏰ Hora")
         comida = st.selectbox("🍴 Tipo de Comida", ["Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena", "Otro"])
-        alimento = st.text_input("🍎 Alimento/Plato")
+categoria = st.selectbox("🍓 Categoría", ["Cereales y derivados", "Verduras y hortalizas", "Frutas", "Leche y lácteos", "Carnes/pescados/huevos", "Legumbres", "Aceites y grasas", "Azúcares y dulces"])
+        frecuencia = st.selectbox("📅 Frecuencia", ["Diaria", "2-3 veces/semana", "4-6 veces/semana", "Semanal", "Ocasional"])
         cantidad = st.text_input("📏 Cantidad", placeholder="Ej: 1 taza, 150g, 1 unidad")
         
         if st.button("➕ Agregar al Registro"):
@@ -459,7 +464,8 @@ with tab2:
                     'fecha': fecha_alimento.strftime("%Y-%m-%d"),
                     'hora': hora_alimento.strftime("%H:%M"),
                     'comida': comida,
-                    'alimento': alimento,
+                    'categoria': categoria,
+                                        'frecuencia': frecuencia,
                     'cantidad': cantidad
                 }
                 st.session_state.registro_alimentos.append(nuevo_alimento)
@@ -523,6 +529,14 @@ with tab3:
             "🏋️ Tipo de Actividad",
             ["Caminata", "Correr", "Ciclismo", "Natación", "Gimnasio", "Yoga", "Deporte en equipo", "Otro"]
         )
+                
+        # Campo condicional para "Otro" deporte
+        especificar_deporte = None
+        if tipo_act == "Otro":
+            especificar_deporte = st.text_input("⚽ Especificar deporte")
+        
+        # Frecuencia semanal
+        frecuencia_semanal = st.number_input("📅 Frecuencia semanal (días)", min_value=1, max_value=7, value=3)
         duracion = st.number_input("⏱️ Duración (minutos)", min_value=1, max_value=300, value=30)
         intensidad = st.select_slider(
             "💥 Intensidad",
@@ -536,7 +550,10 @@ with tab3:
                 'tipo': tipo_act,
                 'duracion': duracion,
                 'intensidad': intensidad,
-                'notas': notas_act
+                'notas': notas_ac,
+                'especificar_deporte': especificar_deporte,
+                'frecuencia_semanal': frecuencia_semanal
+            }
             }
             st.session_state.registro_actividad.append(nueva_actividad)
             st.success(f"✅ Actividad agregada: {tipo_act} - {duracion} min")
