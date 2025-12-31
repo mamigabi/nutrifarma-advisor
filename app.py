@@ -633,10 +633,9 @@ with tab3:
                 'tipo': tipo_act,
                 'duracion': duracion,
                 'intensidad': intensidad,
-                'notas': notas_ac,
+                'notas': notas_act,
                 'especificar_deporte': especificar_deporte,
                 'frecuencia_semanal': frecuencia_semanal
-            }
             }
             st.session_state.registro_actividad.append(nueva_actividad)
             st.success(f"✅ Actividad agregada: {tipo_act} - {duracion} min")
