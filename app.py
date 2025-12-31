@@ -6,6 +6,7 @@ import requests
 from PIL import Image
 import io
 import json
+import pandas as pd
 
 # Configuración de la página
 st.set_page_config(
@@ -204,6 +205,22 @@ def calcular_imc(peso, altura):
     altura_m = altura / 100
     imc = peso / (altura_m ** 2)
     return round(imc, 1)
+
+# Funciones de exportación
+def exportar_alimentacion_csv(registros):
+    """Exporta los registros de alimentación a CSV"""
+    if not registros:
+        return None
+    df = pd.DataFrame(registros)
+    return df.to_csv(index=False).encode('utf-8')
+
+def exportar_actividad_csv(registros):
+    """Exporta los registros de actividad física a CSV"""
+    if not registros:
+        return None
+    df = pd.DataFrame(registros)
+    return df.to_csv(index=False).encode('utf-8')
+
 
 def clasificacion_imc(imc):
     if imc < 18.5:
@@ -457,6 +474,19 @@ with tab2:
         if st.session_state.registro_alimentos:
             # Agrupar por fecha
             registros_por_fecha = {}
+                    
+        # Botón de descarga
+        if st.session_state.registro_alimentos:
+            csv_data = exportar_alimentacion_csv(st.session_state.registro_alimentos)
+            if csv_data:
+                st.download_button(
+                    label="💾 Descargar Cuestionario de Alimentación (CSV)",
+                    data=csv_data,
+                    file_name=f"cuestionario_alimentacion_{datetime.now().strftime('%Y%m%d')}.csv",
+                    mime="text/csv",
+                    key="download_alimentacion"
+                )
+        
             for reg in st.session_state.registro_alimentos:
                 fecha = reg['fecha']
                 if fecha not in registros_por_fecha:
@@ -518,6 +548,19 @@ with tab3:
         if st.session_state.registro_actividad:
             # Calcular estadísticas
             total_min = sum([act['duracion'] for act in st.session_state.registro_actividad])
+                    
+        # Botón de descarga
+        if st.session_state.registro_actividad:
+            csv_data = exportar_actividad_csv(st.session_state.registro_actividad)
+            if csv_data:
+                st.download_button(
+                    label="💾 Descargar Cuestionario de Actividad Física (CSV)",
+                    data=csv_data,
+                    file_name=f"cuestionario_actividad_{datetime.now().strftime('%Y%m%d')}.csv",
+                    mime="text/csv",
+                    key="download_actividad"
+                )
+        
             total_sesiones = len(st.session_state.registro_actividad)
             
             col_stat1, col_stat2, col_stat3 = st.columns(3)
