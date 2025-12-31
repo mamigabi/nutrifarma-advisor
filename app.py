@@ -537,7 +537,7 @@ with tab2:
         comida = st.selectbox("🍴 Tipo de Comida", ["Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena", "Otro"])
         frecuencia = st.selectbox("📅 Frecuencia", ["Diaria", "2-3 veces/semana", "4-6 veces/semana", "Semanal", "Ocasional"])
         alimento = st.text_input("🍏 Alimento", placeholder="Ej: Manzana, Arroz integral, Pechuga de pollo")
-                categoria = st.selectbox("🍎 Categoría", ["Cereales y derivados", "Verduras y hortalizas", "Frutas", "Leche y lácteos", "Carnes/pescados/huevos", "Legumbres", "Aceites/grasas"])
+        categoria = st.selectbox("🍎 Categoría", ["Cereales y derivados", "Verduras y hortalizas", "Frutas", "Leche y lácteos", "Carnes/pescados/huevos", "Legumbres", "Aceites/grasas"])
 
         cantidad = st.text_input("📏 Cantidad", placeholder="Ej: 1 taza, 150g, 1 unidad")
     
