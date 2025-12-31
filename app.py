@@ -535,8 +535,8 @@ with tab2:
         fecha_alimento = st.date_input("📅 Fecha", value=date.today())
         hora_alimento = st.time_input("⏰ Hora")
         comida = st.selectbox("🍴 Tipo de Comida", ["Desayuno", "Media Mañana", "Almuerzo", "Merienda", "Cena", "Otro"])
-categoria = st.selectbox("🍓 Categoría", ["Cereales y derivados", "Verduras y hortalizas", "Frutas", "Leche y lácteos", "Carnes/pescados/huevos", "Legumbres", "Aceites y grasas", "Azúcares y dulces"])
-        frecuencia = st.selectbox("📅 Frecuencia", ["Diaria", "2-3 veces/semana", "4-6 veces/semana", "Semanal", "Ocasional"])
+                categoria = st.selectbox("🍎 Categoría", ["Cereales y derivados", "Verduras y hortalizas", "Frutas", "Leche y lácteos", "Carnes/pescados/huevos", "Frecuencia", "Ocasional"])
+
         cantidad = st.text_input("📏 Cantidad", placeholder="Ej: 1 taza, 150g, 1 unidad")
         
         if st.button("➕ Agregar al Registro"):
