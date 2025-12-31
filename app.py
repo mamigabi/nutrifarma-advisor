@@ -119,7 +119,7 @@ if 'paciente' not in st.session_state:
         'enfermedades': [],
         'medicacion': [],
         'alergias': [],
-        'objetivo': ',
+                    'objetivo': '',
         # Contexto del paciente
         'estado_civil': '',
         'hijos': 0,
