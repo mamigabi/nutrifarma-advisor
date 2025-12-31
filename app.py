@@ -7,7 +7,7 @@ from PIL import Image
 import io
 import json
 import pandas as pd
-
+ 
 # Configuración de la página
 st.set_page_config(
     page_title="NutriFarma Advisor Pro",
