@@ -108,6 +108,87 @@ if not GEMINI_API_KEY:
 # Configurar Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 
+# Inicializar consentimiento en session_state
+if 'consentimiento_aceptado' not in st.session_state:
+    st.session_state.consentimiento_aceptado = False
+
+# Modal de Consentimiento Informado (RGPD/LOPD)
+if not st.session_state.consentimiento_aceptado:
+    st.markdown("""
+    <div style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    background-color: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+    justify-content: center; align-items: center;'>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # Contenedor del modal
+    with st.container():
+        st.markdown("""
+        <div style='background: white; padding: 40px; border-radius: 15px; 
+        max-width: 700px; margin: 50px auto; box-shadow: 0 10px 30px rgba(0,0,0,0.3);'>
+        """, unsafe_allow_html=True)
+        
+        st.markdown("## 📝 Consentimiento Informado - Protección de Datos")
+        
+        st.markdown("""
+        ### Información sobre el Tratamiento de Datos Personales
+        
+        De acuerdo con el **Reglamento General de Protección de Datos (RGPD)** y la 
+        **Ley Orgánica de Protección de Datos (LOPD)**, le informamos:
+        
+        #### 📁 Datos que se recopilan:
+        - Datos identificativos (nombre, edad, sexo)
+        - Datos de salud (medidas antropométricas, analíticas, enfermedades, medicación)
+        - Datos de hábitos alimentarios y actividad física
+        
+        #### 🎯 Finalidad del tratamiento:
+        - Asesoramiento nutricional personalizado
+        - Seguimiento de hábitos saludables
+        - Análisis de interacciones medicamento-nutriente
+        
+        #### 🔒 Seguridad de los datos:
+        - **Sus datos NO se almacenan en ningún servidor**
+        - La información permanece únicamente en **esta sesión del navegador**
+        - Al cerrar la aplicación, todos los datos se eliminan automáticamente
+        
+        #### ⚖️ Sus derechos (ARCO):
+        - **Acceso**: Puede consultar sus datos en cualquier momento
+        - **Rectificación**: Puede modificar cualquier dato erróneo
+        - **Cancelación**: Puede eliminar todos sus datos (botón "Limpiar Todo")
+        - **Oposición**: Puede rechazar este consentimiento y cerrar la aplicación
+        
+        #### 🏭 Responsable del tratamiento:
+        - **NutriFarma Advisor Pro**
+        - Herramienta de asesoramiento nutricional para farmacias
+        
+        ---
+        """)
+                
+        consentimiento_check = st.checkbox(
+            "✅ He leído y acepto el tratamiento de mis datos personales conforme a la información proporcionada",
+            key="consent_checkbox"
+        )
+        
+        col1, col2, col3 = st.columns([1, 1, 1])
+        
+        with col2:
+            if st.button("✅ Aceptar", type="primary", use_container_width=True):
+                if consentimiento_check:
+                    st.session_state.consentimiento_aceptado = True
+                    st.rerun()
+                else:
+                    st.error("⚠️ Debe marcar la casilla para continuar")
+        
+        with col3:
+            if st.button("❌ Rechazar", use_container_width=True):
+                st.error("🚫 No se puede usar la aplicación sin aceptar el consentimiento.")
+                st.info("🔒 Puede cerrar esta ventana del navegador.")
+                st.stop()
+        
+        st.markdown("""</div>""", unsafe_allow_html=True)
+    
+    st.stop()  # Detener la ejecución hasta que se acepte el consentimiento
+
 # Inicializar session_state
 if 'paciente' not in st.session_state:
     st.session_state.paciente = {
