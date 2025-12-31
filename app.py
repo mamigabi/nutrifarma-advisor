@@ -119,7 +119,51 @@ if 'paciente' not in st.session_state:
         'enfermedades': [],
         'medicacion': [],
         'alergias': [],
-        'objetivo': ''
+        'objetivo': ',
+        # Contexto del paciente
+        'estado_civil': '',
+        'hijos': 0,
+        'personas_cargo': '',
+        'profesion': '',
+        'horario_laboral': '',
+        'estres_laboral': 'Medio',
+        'tiempo_disponible': 'Medio',
+        'recursos_economicos': 'Medios',
+        # Sueño y descanso
+        'horas_sueno': 7,
+        'calidad_sueno': 'Buena',
+        'trastornos_sueno': [],
+        # Actividad física detallada
+        'tipo_actividad': [],
+        'frecuencia_semanal': 0,
+        'intensidad_actividad': 'Moderada',
+        # Determinantes del cambio
+        'barreras': [],
+        'beneficios_percibidos': [],
+        'creencias_alimentacion': '',
+        'emociones_comida': '',
+        'entorno_familiar': '',
+        'habilidades_cocina': 'Intermedias',
+        'conocimientos_nutricionales': 'Básicos',
+        'comidas_fuera_casa': 0,
+        'apoyo_social': '',
+        # Evaluación motivacional
+        'etapa_cambio': 'Contemplación',
+        'nivel_importancia': 5,
+        'nivel_confianza': 5,
+        # Diagnóstico PES
+        'problema_pes': '',
+        'etiologia_pes': '',
+        'signos_sintomas_pes': '',
+        # Objetivos SMART/PRAMPE
+        'objetivo_smart': '',
+        'objetivos_especificos': [],
+        # Plan de acción
+        'acciones_concretas': [],
+        'estrategias_motivacionales': [],
+        # Medicación e interacciones
+        'interacciones_detectadas': [],
+        'suplementos_recomendados': []
     }
 
 if 'registro_alimentos' not in st.session_state:
