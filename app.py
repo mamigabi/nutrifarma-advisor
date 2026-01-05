@@ -114,12 +114,12 @@ if 'consentimiento_aceptado' not in st.session_state:
 
 # Modal de Consentimiento Informado (RGPD/LOPD)
 if not st.session_state.consentimiento_aceptado:
-    st.markdown("""
-    <div style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background-color: rgba(255,255,255,0.95); z-index: 9999; display: flex; 
-    justify-content: center; align-items: center;'>
-    </div>
-    """, unsafe_allow_html=True)
+    # st.markdown("""
+    # <div style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+    # background-color: rgba(255,255,255,0.95); z-index: 9999; display: flex; 
+    # justify-content: center; align-items: center;'>
+    # </div>
+    # """, unsafe_allow_html=True)
     
     # Contenedor del modal
     with st.container():
