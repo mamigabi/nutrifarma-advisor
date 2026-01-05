@@ -116,7 +116,7 @@ if 'consentimiento_aceptado' not in st.session_state:
 if not st.session_state.consentimiento_aceptado:
     st.markdown("""
     <div style='position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-    background-color: rgba(0,0,0,0.8); z-index: 9999; display: flex; 
+    background-color: rgba(255,255,255,0.95); z-index: 9999; display: flex; 
     justify-content: center; align-items: center;'>
     </div>
     """, unsafe_allow_html=True)
