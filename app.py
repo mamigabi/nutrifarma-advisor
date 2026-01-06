@@ -547,6 +547,7 @@ with tab2:
                     'fecha': fecha_alimento.strftime("%Y-%m-%d"),
                     'hora': hora_alimento.strftime("%H:%M"),
                     'comida': comida,
+                                     'alimento': alimento,
                     'categoria': categoria,
                                         'frecuencia': frecuencia,
                     'cantidad': cantidad
